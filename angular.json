@@ -25,7 +25,8 @@
             "aot": true,
             "assets": [
               "projects/coronavirus/src/favicon.ico",
-              "projects/coronavirus/src/assets"
+              "projects/coronavirus/src/assets",
+              "projects/coronavirus/src/manifest.webmanifest"
             ],
             "styles": [
               "projects/coronavirus/src/styles.scss"
@@ -59,7 +60,9 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "projects/coronavirus/ngsw-config.json"
             }
           }
         },
@@ -89,7 +92,8 @@
             "karmaConfig": "projects/coronavirus/karma.conf.js",
             "assets": [
               "projects/coronavirus/src/favicon.ico",
-              "projects/coronavirus/src/assets"
+              "projects/coronavirus/src/assets",
+              "projects/coronavirus/src/manifest.webmanifest"
             ],
             "styles": [
               "projects/coronavirus/src/styles.scss"
