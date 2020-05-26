@@ -1,0 +1,136 @@
+#!/bin/bash
+
+# # If you cant execute this generator, give it excecutable permissions with the following command:
+# # chmod +x .gen.sh
+
+# usage()
+# {
+#     echo "usage: gen.sh [[[-w file ] [-i]] | [-h]]"
+# }
+
+# ##### Main
+
+# while [ "$1" != "" ]; do
+#     case $1 in
+#         -w | --workspace )      shift
+#                                 WORKSPACE=$1
+#                                 ;;
+#         -p | --project )        shift
+#                                 PROJECT=$2
+#                                 ;;
+#         -i | --interactive )    interactive=1
+#                                 ;;
+#         -h | --help )           usage
+#                                 exit
+#                                 ;;
+#         * )                     usage
+#                                 exit 1
+#     esac
+#     shift
+# done
+# # Test code to verify command line processing
+# if [ "$interactive" != "1" ]; then
+# 	echo "interactive is off"
+# fi
+
+# if [ "$interactive" = "1" ]; then
+#     echo "interactive is on"
+#     response=
+#     echo -n "Enter name of output file [$WORKSPACE] > "
+#     read response
+#     if [ -n "$response" ]; then
+#         filename=$response
+#     fi
+
+#     if [ -f $WORKSPACE ]; then
+#         echo -n "Output file exists. Overwrite? (y/n) > "
+#         read response
+#         if [ "$response" != "y" ]; then
+#             echo "Exiting program."
+#             exit 1
+#         fi
+#     fi
+# fi
+# if [ "$interactive" != "1" ]; then
+#     echo "Your workspace name is:  $WORKSPACE"
+# fi
+
+
+
+# # prints the input
+# function print_my_input() {
+#  echo 'Your workspace name is: ' $WORKSPACE
+#  echo 'Your default project application name is: ' $PROJECT
+# }
+
+# #print_my_input()
+# #Create a new Angular 9 workspace without any project
+/bin/bash wellcome
+echo ' => Creating workspace ...'
+ng new covid-workspace --create-application=false --commit=true
+echo ' => Go to workspace directory ...'
+cd covid-workspace
+echo ' => Enable all usage analytics ...'
+ng analytics on
+echo ' => Configuring git user and mail ...'
+git config user.email "julio.melchor@ciencias.unam.mx"
+git config user.name "Julio Cesar Melchor Pinto"
+git add .
+git commit -m "Workspace creation with angular/cli"
+echo ' => Generating application project ...'
+ng generate application coronavirus --routing --style=scss --interactive=false
+git add .
+git commit -m "Project creation with ng generate"
+echo ' => Adding progresive web application pack ...'
+ng add @angular/pwa --project coronavirus --defaults=true
+git add .
+git commit -m "Add progressive web app schemes with ng add"
+echo ' => Adding Angular Material pack & CDK for schematics ...'
+ng add @angular/material --defaults=true
+#echo ' => NPM install hammers.js ...'
+#npm install --save hammers.js --verbose=false
+git add .
+git commit -m "Add angular/material"
+echo ' => Adding ngx-bootstrap pack ...'
+ng add ngx-bootstrap
+echo ' => NPM install jquery ...'
+npm install --save jquery@3.0.0
+echo ' => NPM install popper.js ...'
+npm install --save popper.js
+git add .
+git commit -m "Add ngx-bootstrap"
+echo ' => NPM install extra packages ...'
+npm install --save ng2-charts
+npm install --save chart.js
+# git add .
+# git commit -m "Add ng2-charts"
+echo ' => NPM install firebase ...'
+npm install --save firebase
+echo ' => NPM install json-server ...'
+npm install --save json-server
+echo ' => NPM install faker ...'
+npm install --save faker
+echo ' => Create and go to local server directory ...'
+mkdir local-server && cd local-server
+#touch database.json
+#echo '{"products": []}' > database.json
+#touch generate.js
+#echo 'var faker = require('faker');var database = { products: []};for (var i = 1; i<= 300; i++) {database.products.push({id: i,name: faker.commerce.productName(),description: faker.lorem.sentences(),price: faker.commerce.price(),imageUrl: "https://source.unsplash.com/1600x900/?product",quantity: faker.random.number()});}console.log(JSON.stringify(database));' > generate.js
+echo ' => Create database JSON file ...'
+cat > database.json <<- "EOF"
+{"products": []}
+EOF
+echo ' => Create fake database generator file ...'
+cat > generate.js <<- "EOF"
+var faker = require('faker');var database = { products: []};for (var i = 1; i<= 300; i++) {database.products.push({id: i,name: faker.commerce.productName(),description: faker.lorem.sentences(),price: faker.commerce.price(),imageUrl: "https://source.unsplash.com/1600x900/?product",quantity: faker.random.number()});}console.log(JSON.stringify(database));
+EOF
+echo ' => Go to workspace directory ...'
+cd ..
+git add .
+git commit -m "Create fake local server"
+echo ' => The following commits were made in workspace git repository:'
+git log --pretty=oneline
+echo ' => Copy generator to workspace ...'
+cp ../gen ./covid-workspace/gen
+git add .
+git commit -m "Add initial-generator to workspace"
