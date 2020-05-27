@@ -1,1 +1,15 @@
-<p>statistics works!</p>
+<div style="width: 40%;">
+  <canvas baseChart [chartType]="'line'" [datasets]="chartData" [labels]="chartLabels" [options]="chartOptions"
+    [legend]="true" (chartClick)="onChartClick($event)">
+  </canvas>
+</div>
+<ng-container *ngIf="summary as global">
+  <p>Datos Globales:</p>
+    <p>Total casos confirmados:{{ global.Global.TotalConfirmed | number}}</p>
+    <p>Total casos recuperados:{{ global.Global.TotalRecovered | number}}</p>
+    <p>Total casos fallecidos:{{ global.Global.TotalDeaths | number}}</p>
+    <p>Nuevos casos confirmados:{{ global.Global.NewConfirmed | number}}</p>
+    <p>Nuevos casos recuperados:{{ global.Global.NewRecovered | number}}</p>
+    <p>Nuevos casos fallecidos:{{ global.Global.NewDeaths | number}}</p>
+    <p>Tiempo de actualizacion:{{ global.Date}}</p>
+</ng-container>
