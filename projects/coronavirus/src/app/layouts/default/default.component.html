@@ -2,11 +2,14 @@
     <mat-sidenav #drawer class="sidenav" fixedInViewport mode="push" role="navigation">
       <mat-toolbar>
         <div class="avatar-container">
-          <img class="user-pic" mat-card-lg-image src="assets/img">
+          <!-- <img class="user-pic" mat-card-lg-image src="assets/img"> -->
         </div>
       </mat-toolbar>
       <mat-nav-list>
         <a mat-list-item (click)="drawer.toggle()" routerLink="/statistics">Statistics</a>
+        <a mat-list-item (click)="drawer.toggle()" routerLink="/dashboard">Dashboard</a>
+        <!-- <a mat-list-item (click)="drawer.toggle()" routerLink="/address">Address</a> -->
+
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>

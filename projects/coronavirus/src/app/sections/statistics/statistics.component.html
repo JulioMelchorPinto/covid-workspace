@@ -1,15 +1,75 @@
-<div style="width: 40%;">
+<!-- <div style="width: 40%;">
   <canvas baseChart [chartType]="'line'" [datasets]="chartData" [labels]="chartLabels" [options]="chartOptions"
     [legend]="true" (chartClick)="onChartClick($event)">
   </canvas>
+</div> -->
+<div class="grid-container">
+  <h1 class="display-4">Estadísticas</h1>
+  <h3 class="mat-h3">{{summary.Date|date}}</h3>
+  <div flexRow>
+    <div fxLayout="column">
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column">
+        <div flexorder="1" fxFlex.xs="" fxFlex.sm="" fxflex.xs="" fxflex="50%">
+          <div class="container">
+            <mat-card>
+              <!-- <mat-spinner> </mat-spinner> -->
+              <mat-card-header>
+                <mat-card-title>
+                  El Mundo
+                </mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <dl class="row">
+                  <dt class="col-sm-3">Confirmados:</dt>
+                  <dd class="col-sm-9">{{summary.Global.TotalConfirmed|number}} ( +
+                    {{summary.Global.NewConfirmed|number}} )</dd>
+                  <dt class="col-sm-3">Recuperados:</dt>
+                  <dd class="col-sm-9">{{summary.Global.TotalRecovered|number}} ( +
+                    {{summary.Global.NewRecovered|number}} )</dd>
+                  <dt class="col-sm-3">Fallecidos:</dt>
+                  <dd class="col-sm-9">{{summary.Global.TotalDeaths|number}} ( + {{summary.Global.NewDeaths|number}} )
+                  </dd>
+                </dl>
+              </mat-card-content>
+              <mat-card-footer>
+
+              </mat-card-footer>
+            </mat-card>
+          </div>
+        </div>
+        <div flexorder="2" fxFlex.xs="" fxFlex.sm="" fxflex.xs="" fxflex="50%">
+          <div class="container">
+            <mat-card>
+              <mat-card-content>
+                <form>
+                  <mat-form-field>
+                    <mat-label>País</mat-label>
+                    <mat-select [(ngModel)]="selectedCountry" name="country" (selectionChange)="onChangeSelect(selectedCountry)">
+                      <mat-option *ngFor="let c of allCountryData" [value]="c.Slug">
+                        {{c.Country}}
+                      </mat-option>
+                    </mat-select>
+                    <dl class="row">
+                     <!--  <dt class="col-sm-3">Confirmados:</dt>
+                       <dd class="col-sm-9">{{country.totalconfirmed}} ( + {{country.newconfirmed|number}} )</dd> -->
+                      <!--<dt class="col-sm-3">Recuperados:</dt>
+                       <dd class="col-sm-9">{{country.totarecovered|number}} ( + {{country.newrecovered|number}} )</dd> -->
+                      <!--<dt class="col-sm-3">Fallecidos:</dt>
+                       <dd class="col-sm-9">{{country.totaldeaths|number}} ( + {{country.newdeaths|number}} )</dd> -->
+                    </dl>
+                  </mat-form-field>
+                </form>
+              </mat-card-content>
+              <mat-card-footer>
+
+              </mat-card-footer>
+
+            </mat-card>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </div>
-<ng-container *ngIf="summary as global">
-  <p>Datos Globales:</p>
-    <p>Total casos confirmados:{{ global.Global.TotalConfirmed | number}}</p>
-    <p>Total casos recuperados:{{ global.Global.TotalRecovered | number}}</p>
-    <p>Total casos fallecidos:{{ global.Global.TotalDeaths | number}}</p>
-    <p>Nuevos casos confirmados:{{ global.Global.NewConfirmed | number}}</p>
-    <p>Nuevos casos recuperados:{{ global.Global.NewRecovered | number}}</p>
-    <p>Nuevos casos fallecidos:{{ global.Global.NewDeaths | number}}</p>
-    <p>Tiempo de actualizacion:{{ global.Date}}</p>
-</ng-container>

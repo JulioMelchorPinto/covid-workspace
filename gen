@@ -102,9 +102,9 @@ git commit -m "Add ngx-bootstrap"
 echo ' => NPM install extra packages ...'
 npm install --save ng2-charts
 npm install --save chart.js
-# git add .
-# git commit -m "Add ng2-charts"
-echo ' => NPM install firebase ...'
+echo ' => NPM install @angular/flex-layout ...'
+npm install --save @angular/flex-layout
+echo ' =>  firebase ...'
 npm install --save firebase
 echo ' => NPM install json-server ...'
 npm install --save json-server

@@ -4,5 +4,5 @@ export interface Global {
   newdeaths: number;
   totaldeaths: number;
   newrecovered: number;
-  totareecovered: number;
+  totalrecovered: number;
 }
